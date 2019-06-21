@@ -1,5 +1,5 @@
-class Api::V2::GamesController < ApplicationController
-    before_action :authenticate_with_token!
+class Api::V2::GamesController < Api::V2::BaseController
+    before_action :authenticate_user!
     
     def index
         games = current_user.games.ransack(params[:q]).result
