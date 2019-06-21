@@ -2,7 +2,7 @@ class Api::V2::GamesController < ApplicationController
     before_action :authenticate_with_token!
     
     def index
-        games = current_user.games
+        games = current_user.games.ransack(params[:q]).result
         render json: games, status: 200
     end
     
